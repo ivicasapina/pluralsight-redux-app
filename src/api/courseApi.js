@@ -1,6 +1,5 @@
 import { handleResponse, handleError } from "./apiUtils";
 const baseUrl = process.env.REACT_APP_API_URL + "/courses/";
-console.log(process.env)
 
 export function getCourses() {
   return fetch(baseUrl)
