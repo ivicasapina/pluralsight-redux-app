@@ -1,0 +1,27 @@
+import * as types from './actionTypes';
+import * as authorsApi from '../../api/authorApi';
+
+/**
+ * Action creators
+ */
+export function loadAuthorsSuccess(authors) {
+  return {
+    type: types.LOAD_AUTHORS_SUCCESS,
+    payload: authors
+  }
+}
+/**
+ * Thunks
+ */
+export function loadAuthors() {
+  return function (dispatch) {
+    return authorsApi
+      .getAuthors()
+      .then(authors => {
+        dispatch(loadAuthorsSuccess(authors));
+      })
+      .catch(error => {
+        throw error
+      });
+  }
+}
