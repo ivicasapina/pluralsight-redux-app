@@ -1,11 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
-import { loadCourses } from '../../redux/actions/courseActions';
+import { loadCourses, deleteCourse } from '../../redux/actions/courseActions';
 import { loadAuthors } from '../../redux/actions/authorActions';
 import CourseList from './CourseList';
+import Spinner from '../common/Spinner';
 
 class CoursesPage extends Component {
+  state = {
+    redirectToAddCoursePage: false
+  }
+
   componentDidMount() {
     const { courses, authors, loadAuthors, loadCourses } = this.props;
     if (courses.length === 0) {
@@ -22,12 +29,39 @@ class CoursesPage extends Component {
     }
   }
 
+  handleDeleteCourse = (course) => {
+    toast.success("Course deleted.");
+    this.props
+      .deleteCourse(course)
+      .catch(error => {
+        toast.error("Delete failed. " + error.message, { autoClose: false })
+      });
+  }
+
   render() {
     return (
-      <Fragment>
+      <>
+        {this.state.redirectToAddCoursePage && <Redirect to="/course" />}
         <h2>Courses</h2>
-        <CourseList courses={this.props.courses} />
-      </Fragment>
+        {this.props.loading
+          ? <Spinner />
+          : (
+            <>
+              <button
+                style={{ marginBottom: 20 }}
+                className="btn btn-primary add-course"
+                onClick={() => this.setState({ redirectToAddCoursePage: true })}
+              >
+                Add Course
+              </button>
+              <CourseList
+                courses={this.props.courses}
+                onDeleteClick={this.handleDeleteCourse}
+              />
+            </>
+          )
+        }
+      </>
     );
   }
 };
@@ -36,7 +70,8 @@ CoursesPage.propTypes = {
   courses: PropTypes.array.isRequired,
   authors: PropTypes.array.isRequired,
   loadCourses: PropTypes.func.isRequired,
-  loadAuthors: PropTypes.func.isRequired
+  loadAuthors: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {
@@ -49,13 +84,15 @@ function mapStateToProps(state) {
           authorName: state.authors.find(a => a.id === course.authorId).name
         }
       }),
-    authors: state.authors
+    authors: state.authors,
+    loading: state.apiCallsInProgress > 0
   }
 }
 
 const mapDispatchToProps = {
   loadCourses,
-  loadAuthors
+  loadAuthors,
+  deleteCourse
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage);
