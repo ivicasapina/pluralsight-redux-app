@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/pluralsight-cms-demo/static/css/main.cf5e52b8.chunk.css",
+    "main.js": "/pluralsight-cms-demo/static/js/main.0ffd50f4.chunk.js",
+    "main.js.map": "/pluralsight-cms-demo/static/js/main.0ffd50f4.chunk.js.map",
+    "runtime~main.js": "/pluralsight-cms-demo/static/js/runtime~main.cf3c81af.js",
+    "runtime~main.js.map": "/pluralsight-cms-demo/static/js/runtime~main.cf3c81af.js.map",
+    "static/css/2.4ed2986c.chunk.css": "/pluralsight-cms-demo/static/css/2.4ed2986c.chunk.css",
+    "static/js/2.368d8825.chunk.js": "/pluralsight-cms-demo/static/js/2.368d8825.chunk.js",
+    "static/js/2.368d8825.chunk.js.map": "/pluralsight-cms-demo/static/js/2.368d8825.chunk.js.map",
+    "index.html": "/pluralsight-cms-demo/index.html",
+    "precache-manifest.7792cc17de39b16187891ed32dbe31b6.js": "/pluralsight-cms-demo/precache-manifest.7792cc17de39b16187891ed32dbe31b6.js",
+    "service-worker.js": "/pluralsight-cms-demo/service-worker.js",
+    "static/css/2.4ed2986c.chunk.css.map": "/pluralsight-cms-demo/static/css/2.4ed2986c.chunk.css.map",
+    "static/css/main.cf5e52b8.chunk.css.map": "/pluralsight-cms-demo/static/css/main.cf5e52b8.chunk.css.map"
+  }
+}
